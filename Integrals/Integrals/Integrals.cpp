@@ -32,17 +32,17 @@ int main()
 	S0 = fun(a) + fun(b);
 	S1 = 0;
 	h = (b - a) / n;
-	for (int i = 1; i < n / 2; i++)
+	for (int i = 1; i <= n / 2; i++)
 		S1 += fun(a + (2 * i - 1) * h);
 	S2 = 0;
-	for (int i = 0; i < n / 2; i++)
+	for (int i = 1; i < n / 2; i++)
 		S2 += fun(a + (2 * i) * h);
 	I1 = (b - a) / (3 * n) * (S0 + 4 * S1 + 2 * S2);
 	n = 2 * n;
 	h = (b - a) / n;
 	S2 = S1 + S2;
 	S1 = 0;
-	for (int i = 1; i < n / 2; i++)
+	for (int i = 1; i <= n / 2; i++)
 		S1 += fun(a + (2 * i - 1) * h);
 	I2 = (b - a) / (3 * n) * (S0 + 4 * S1 + 2 * S2);
 	if (fabs(I2 - I1) <= eps*15/16)
@@ -55,12 +55,15 @@ int main()
 			h = (b - a) / n;
 			S2 = S1 + S2;
 			S1 = 0;
-			for (int i = 1; i < n / 2; i++)
+			for (int i = 1; i <= n / 2; i++)
 				S1 += fun(a + (2 * i - 1) * h);
 			I2 = (b - a) / (3 * n) * (S0 + 4 * S1 + 2 * S2);
 		} while (fabs(I2 - I1) >= eps*15/16);
 	}
+
+	cout << endl << I1;
 	cout << endl << I2;
+	cout << endl<<"n = " << n;
 	
 	getchar(); getchar();
 	return 0;
